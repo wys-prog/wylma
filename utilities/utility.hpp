@@ -10,10 +10,21 @@ namespace wylma {
       return sizeof(T);
     }
 
-    size_t lenof(const char *a) {
+    template <typename TChar>
+    size_t lenof(const TChar *a) {
       size_t l = 0;
       while (a--) l++;
       return l;
+    }
+
+    template <typename Ty>
+    size_t memof(const Ty &t) {
+      return sizeof(t);
+    }
+
+    template <typename TChar>
+    size_t memof(const TChar *t) {
+      return lenof(t) * sizeof(TChar);
     }
 
     /* Returns the biggest between a and b */
