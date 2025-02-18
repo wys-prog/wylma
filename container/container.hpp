@@ -72,6 +72,10 @@ namespace wylma {
         _data[_size+i] = bc.copy(i);
       }
     }
+
+    void insert(const Ty *t, cindex_t s) {
+      for (cindex_t i = 0; i < s; i++) push_back(t[i]);
+    }
     
     Ty copy(cindex_t at) const {
       if (at >= _size) throw out_of_range("copy() with a too large index.");
@@ -119,7 +123,7 @@ namespace wylma {
       }
     }
 
-    void removeall(const T &t) {
+    void removeall(const Ty &t) {
       for (cindex_t i = 0; i < _size; i++) {
         if (utilities::same(_data[i], t)) remove(i);
       }
@@ -161,6 +165,15 @@ namespace wylma {
       delete[] _data;
     }
 
+    bool null() const {
+      if (empty()) return true;
+      for (cindex_t i = 0; i < _size; i++) {
+        if (_data[i] != Ty(0)) return false;
+      }
+
+      return true;
+    }
+
     void build_from(const Ty *another, cindex_t it_size) {
       reisze(it_size);
       for (cindex_t = 0; i < it_size; i++) {
@@ -187,6 +200,9 @@ namespace wylma {
       return *this;
     }
 
+    cindex_t begin() const { return 0; }
+    cindex_t end() const { return _size; }
+
     /* Constructors */
     basic_container() : _data(nullptr), _size(0), _capacity(0) { }
 
@@ -199,6 +215,8 @@ namespace wylma {
       : _data(nullptr), _size(0), _capacity(0) {
       resize(s);
     }
+
+    ~basic_container() { delete[] _data; }
   };
 
 
@@ -211,7 +229,7 @@ namespace wylma {
 
     template <typename Ty>
     size_t memof(const basic_container<Ty> &bc) {
-      return sizeof(bc) + bc.capacity();
+      return sizeof(bc) + (bc.capacity() * sizeof(Ty));
     }
   } // namespace utilities
   

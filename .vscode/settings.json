@@ -3,6 +3,21 @@
     "*.nas": "x86 and x86_64 Assembly",
     "*.h": "c",
     "new": "cpp",
-    "__config": "cpp"
+    "__config": "cpp",
+    "__hash_table": "cpp",
+    "__locale": "cpp",
+    "__split_buffer": "cpp",
+    "array": "cpp",
+    "ios": "cpp",
+    "iterator": "cpp",
+    "locale": "cpp",
+    "string": "cpp",
+    "string_view": "cpp",
+    "vector": "cpp",
+    "bitset": "cpp",
+    "ostream": "cpp",
+    "print": "cpp",
+    "sstream": "cpp",
+    "iosfwd": "cpp"
   }
 }
